@@ -60,6 +60,8 @@ To run the project in development mode with hot reload:
 npm run server:dev
 ```
 
+The server will be available at [http://localhost:5173](http://localhost:5173).
+
 ### Coding style
 
 #### Linter
