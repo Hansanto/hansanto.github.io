@@ -48,9 +48,6 @@ jobs:
         with:
           path: dist
 
-      - name: 🚀 Publish on GitHub Pages
-        uses: actions/deploy-pages@v4
-
   deploy:
     needs: build
     runs-on: ubuntu-24.04
@@ -58,9 +55,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      pages: write # to deploy to Pages
-      id-token: write  # to verify the deployment originates from an appropriate
+      pages: write
+      id-token: write
     steps:
-      - name: Deploy
+      - name: 🚀 Publish on GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
