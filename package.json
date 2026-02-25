@@ -1,0 +1,42 @@
+{
+  "name": "hansanto.github.io",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "server:dev": "vite",
+    "server:preview": "vite preview",
+    "server:test": "vite preview --port 8080",
+    "test": "vitest",
+    "test:playwright": "playwright test -c playwright.config.ts",
+    "test:playwright:ui": "npm run test:playwright -- --ui",
+    "test:playwright:report": "playwright show-report report/html",
+    "format:check": "prettier -c \"src\" \"test\"",
+    "format:fix": "prettier --write \"src\" \"test\"",
+    "lint:check": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
+    "svelte:check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.3",
+    "@eslint/json": "0.14.0",
+    "@playwright/test": "1.58.2",
+    "@sveltejs/vite-plugin-svelte": "6.2.4",
+    "@tsconfig/svelte": "5.0.8",
+    "@types/node": "25.3.0",
+    "eslint-plugin-playwright": "2.7.1",
+    "globals": "17.3.0",
+    "jiti": "2.6.1",
+    "prettier": "3.8.1",
+    "prettier-plugin-svelte": "3.5.0",
+    "sass": "1.97.3",
+    "svelte": "5.53.3",
+    "svelte-check": "4.4.3",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.56.1",
+    "vite": "7.3.1",
+    "vite-tsconfig-paths": "6.1.1",
+    "vitest": "4.0.18"
+  }
+}
