@@ -12,6 +12,8 @@
     "test:playwright": "playwright test -c playwright.config.ts",
     "test:playwright:ui": "npm run test:playwright -- --ui",
     "test:playwright:report": "playwright show-report report/html",
+    "test:playwright:update-snapshots": "docker build -f playwright.Dockerfile -t playwright-local --secret id=npmrc,src=$HOME/.npmrc . && docker run --rm --init --ipc=host -v \"$(pwd)\":/project -v /project/node_modules playwright-local npm run test:playwright -- --update-snapshots",
+    "playwright:codegen": "playwright codegen",
     "format:check": "prettier -c \"src\" \"test\"",
     "format:fix": "prettier --write \"src\" \"test\"",
     "lint:check": "eslint --max-warnings 0",

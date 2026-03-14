@@ -31,7 +31,11 @@ export default defineConfig({
     snapshotPathTemplate: '{testDir}/{testFileDir}/snapshots/{projectName}/{arg}{ext}',
     expect: {
         toHaveScreenshot: {
-            maxDiffPixelRatio: 0.01,
+            // Snapshot should be rendered using Docker to be consistent with CI environment (see command `npm run test:playwright:update-snapshots`).
+            // But locally, having a little difference in rendering is possible, so we can set a threshold to avoid failing tests due to very small differences in rendering.
+            // Mac OS: 0.03 threshold is needed
+            // Windows (WSL Ubuntu): 0.04 threshold is needed
+            maxDiffPixelRatio: process.env.CI ? 0 : 0.04,
         },
     },
 
@@ -44,7 +48,6 @@ export default defineConfig({
             name: 'desktop-light',
             use: {
                 ...devices['Desktop Chrome'],
-                isMobile: false,
                 colorScheme: 'light',
             },
         },
@@ -52,7 +55,6 @@ export default defineConfig({
             name: 'desktop-dark',
             use: {
                 ...devices['Desktop Chrome'],
-                isMobile: false,
                 colorScheme: 'dark',
             },
             grep: /@dark/,
@@ -60,8 +62,7 @@ export default defineConfig({
         {
             name: 'tablet-light',
             use: {
-                ...devices['Galaxy Tab S9 landscape'],
-                isMobile: true,
+                ...devices['Nexus 10'],
                 colorScheme: 'light',
             },
             grep: /@responsive/,
@@ -69,8 +70,7 @@ export default defineConfig({
         {
             name: 'tablet-dark',
             use: {
-                ...devices['Galaxy Tab S9 landscape'],
-                isMobile: true,
+                ...devices['Nexus 10'],
                 colorScheme: 'dark',
             },
             grep: /(?=.*@responsive)(?=.*@dark)/,
@@ -78,8 +78,7 @@ export default defineConfig({
         {
             name: 'mobile-light',
             use: {
-                ...devices['Pixel 5'],
-                isMobile: true,
+                ...devices['Pixel 7'],
                 colorScheme: 'light',
             },
             grep: /@responsive/,
@@ -87,8 +86,7 @@ export default defineConfig({
         {
             name: 'mobile-dark',
             use: {
-                ...devices['Pixel 5'],
-                isMobile: true,
+                ...devices['Pixel 7'],
                 colorScheme: 'dark',
             },
             grep: /(?=.*@responsive)(?=.*@dark)/,
