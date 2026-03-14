@@ -26,7 +26,7 @@ export default defineConfig({
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
     },
-    updateSnapshots: 'all',
+    updateSnapshots: process.env.CI ? 'none' : 'missing',
     // https://playwright.dev/docs/api/class-testconfig#test-config-snapshot-path-template
     snapshotPathTemplate: '{testDir}/{testFileDir}/snapshots/{projectName}/{arg}{ext}',
     expect: {
