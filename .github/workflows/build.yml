@@ -66,15 +66,6 @@ jobs:
       - name: 🧪 Integration test
         run: npm run test:playwright
 
-      - name: Upload images
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: screenshots
-          retention-days: 1
-          path: |
-            test/playwright/snapshots
-
       - name: 🙈 Save caching Playwright
         id: save-cache-playwright
         if: always() && steps.restore-cache-playwright.outputs.cache-hit != 'true'
